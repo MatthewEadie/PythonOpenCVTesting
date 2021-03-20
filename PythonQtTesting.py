@@ -10,7 +10,7 @@ imageGreen = cv2.imread(imagePath + "2018-02-28_13-59-53_00160.tif", 0);
 imageRed = cv2.imread(imagePath + "2018-02-28_13-59-53_00161.tif", 0);
 imageNIR = cv2.imread(imagePath + "2018-02-28_13-59-53_00162.tif", 0);
 
-#THIS WORKS!!!!
+##THIS WORKS!!!!
 #H = np.zeros((256,1),np.uint8);
 #S = np.zeros((256,1),np.uint8);
 #V = np.zeros((256,1),np.uint8);
@@ -38,30 +38,50 @@ imageNIR = cv2.imread(imagePath + "2018-02-28_13-59-53_00162.tif", 0);
 
 
 
+#THIS WORKS!!!!
+H = np.zeros((256,1),np.uint8);
+S = np.zeros((256,1),np.uint8);
+L = np.zeros((256,1),np.uint8);
+
+for i in range(0,256):
+    H[i,:] = 180;
+    S[i,:] = 180;
+    L[i,:] = i;
+    
+
+hsv = cv2.merge((H,L,S))
+colourMap = cv2.cvtColor(hsv, cv2.COLOR_HLS2BGR)
+cv2.imshow("BGR", colourMap)
+
+#finalImage = cv2.applyColorMap(imageGreen, colourMap);
+#cv2.imshow("Final image", finalImage)
+
+
+
 #Colour wheel code!
-H = np.zeros((256,180),np.uint8);
-S = np.zeros((256,180),np.uint8);
-V = np.zeros((256,180),np.uint8);
+#H = np.zeros((256,180),np.uint8);
+#S = np.zeros((256,180),np.uint8);
+#V = np.zeros((256,180),np.uint8);
 
-for h in range(0,180,1):
-    start = h;
-    end = h + h;
-    for i in range(0,256):
-        H[i,start:end] = h;
+#for h in range(0,180,1):
+#    start = h;
+#    end = h + h;
+#    for i in range(0,256):
+#        H[i,start:end] = h;
 
-        if i > 128:
-            S[i,start:end] = S[i-1,start:end]-2;
-        else:
-            S[i,start:end] = 255;
+#        if i > 128:
+#            S[i,start:end] = S[i-1,start:end]-2;
+#        else:
+#            S[i,start:end] = 255;
 
-        if i < 128:
-            V[i,start:end] = i*2;
-        else:
-            V[i,start:end] = 255;
+#        if i < 128:
+#            V[i,start:end] = i*2;
+#        else:
+#            V[i,start:end] = 255;
 
-hsv = cv2.merge((H,S,V))
-colourWheel = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-cv2.imshow("Colour Wheel", colourWheel)
+#hsv = cv2.merge((H,S,V))
+#colourWheel = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
+#cv2.imshow("Colour Wheel", colourWheel)
 
 
 
